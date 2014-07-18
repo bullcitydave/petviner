@@ -23,33 +23,28 @@
   </head>
   <body>
 
-    <div class="hero-unit">
-      <h1>'Allo, 'Allo!</h1>
-      <p>You now have</p>
-      <ul>
-        <li>HTML5 Boilerplate</li>
-        <li>Normalize CSS</li>
+    <div class="container"></div>
 
-        <li>Sass</li>
+    <script type='text/template' id='recipe-list-template'>
+      {{#each recipeCollection}}
+        <div class='result'>
+          <p>{{recipeName}}</p>
+        </div>
+      {{/each}}
+    </script>
 
-
-        <li>Modernizr</li>
-
-
-        <li>Bourbon & Neat</li>
-
-
-        <li>UnderscoreJS</li>
-
-      </ul>
-      <p>Don't forget to update your readme file!!</p>
-    </div>
+    <script type='text/template' id='recipe-template'>
+      <div class='recipe'>
+        <p>{{recipeName}}</p>
+      </div>
+    </script>
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/underscore/underscore.js"></script>
     <script src="../bower_components/backbone/backbone.js"></script>
+    <script src="../bower_components/handlebars/handlebars.min.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
