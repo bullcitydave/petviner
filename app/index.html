@@ -22,27 +22,23 @@
     <!-- endbuild -->
   </head>
   <body>
-
     <div class='container'></div>
 
-    <script type='text/template' id='recipe-list-template'>
+    <script type='text/template' id='vine-list-template'>
       <div class='list'>
-        {{#each recipeCollection}}
+        {{#each vineCollection}}
           <div class='result'>
-            <img src='{{smallImageUrls}}'>
-            <p>{{recipeName}}</p>
-            <p>{{sourceDisplayName}}</p>
-            <p>{{totalTimeInSeconds}} mins.</p>
-            <p>ingredients</p>
-            <p>{{rating}}</p>
+            <video width="320" height="240" controls>
+  <source src={{videoURL}} type="video/mp4">
+            <p>{{title}}</p>
           </div>
         {{/each}}
       </div>
     </script>
 
-    <script type='text/template' id='recipe-template'>
-      <div class='recipe'>
-        <p>{{recipeName}}</p>
+    <script type='text/template' id='vine-template'>
+      <div class='vine'>
+        <p>{{title}}</p>
       </div>
     </script>
 
@@ -51,12 +47,11 @@
     <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/underscore/underscore.js"></script>
     <script src="../bower_components/backbone/backbone.js"></script>
-    <script src="../bower_components/handlebars/handlebars.min.js"></script>
+    <script src="../bower_components/handlebars/handlebars.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
         <!-- build:js scripts/main.js -->
-        <script src="scripts/sampleRecipes.js"></script>
         <script src="scripts/main.js"></script>
 
         <!-- endbuild -->
