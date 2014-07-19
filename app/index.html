@@ -23,14 +23,21 @@
   </head>
   <body>
 
-    <div class="container"></div>
+    <div class='container'></div>
 
     <script type='text/template' id='recipe-list-template'>
-      {{#each recipeCollection}}
-        <div class='result'>
-          <p>{{recipeName}}</p>
-        </div>
-      {{/each}}
+      <div class='list'>
+        {{#each recipeCollection}}
+          <div class='result'>
+            <img src='{{smallImageUrls}}'>
+            <p>{{recipeName}}</p>
+            <p>{{sourceDisplayName}}</p>
+            <p>{{totalTimeInSeconds}} mins.</p>
+            <p>ingredients</p>
+            <p>{{rating}}</p>
+          </div>
+        {{/each}}
+      </div>
     </script>
 
     <script type='text/template' id='recipe-template'>
