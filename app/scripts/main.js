@@ -11,7 +11,28 @@ var Recipe = Backbone.Model.extend ({
 var recipe = new Recipe();
 
 var RecipeCollection = Backbone.Collection.extend ({
-  model: Recipe
+  model: Recipe,
+  sync: function(method, model, options) {
+        var params = _.extend({
+            type: 'GET',
+            dataType: 'jsonp',
+            url: 'http://api.yummly.com/v1/api/recipes?_app_id=2aacde19&_app_key=e8bce795e7a1dc7c96574390c998df81&q=%20chicken+soup',
+            processData: false
+        }, options);
+
+        return $.ajax(params);
+    },
+
+
+  // url: 'http://api.yummly.com/v1/api/recipes?_app_id=2aacde19&_app_key=e8bce795e7a1dc7c96574390c998df81&q=%20chicken+soup',
+  // sync: function(method, model, options) {
+  //     options.timeout = 10000;
+  //     options.dataType = "jsonp";
+  //     options.jsonp = "JSONPcallback";
+  //     return Backbone.sync(method, model, options);
+
+
+
 });
 
 //Instantiate the Collection
@@ -21,12 +42,15 @@ var recipeCollection = new RecipeCollection();
 var RecipeListView = Backbone.View.extend ({
 
     initialize:function(){
-        this.render();
+       this.collection.fetch();
+       console.log('Did I make it past fetch?');
+       this.render();
     },
 
     render: function () {
         var source = $('#recipe-list-template').html();
         var template = Handlebars.compile(source);
+        console.log('Did I make it to render?');
         var recipesJSON = $.ajax('http://api.yummly.com/v1/api/recipes?_app_id=2aacde19&_app_key=e8bce795e7a1dc7c96574390c998df81&q=%20chicken+soup',{
             'async': false,
             'global': false,
@@ -34,15 +58,14 @@ var RecipeListView = Backbone.View.extend ({
             complete: function(data){
                 json = data;
             }
-      }).done(function(data) {
+      })
+      // var rendered = template({recipeCollection: this.collection.toJSON()});
+      var rendered = template({recipeCollection: data.matches});
+      // this.$el.html(rendered);
+      $('.container').html(rendered);
+      return this;
 
 
-        console.log('Returned JSON data...' + recipesJSON);
-        var rendered = template({recipeCollection: data.matches});
-        // this.$el.html(rendered);
-        $('.container').html(rendered);
-        return this;
-      });
 }
 });
 
