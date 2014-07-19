@@ -16,9 +16,9 @@ var RecipeCollection = Backbone.Collection.extend ({
 
 //Instantiate the Collection
 var recipeCollection = new RecipeCollection();
-recipeCollection.add([
-  {recipeName: 'chicken soup'}
-])
+// recipeCollection.add([
+//   {recipeName: 'chicken soup'}
+// ])
 
 //View for our recipe collection
 var RecipeListView = Backbone.View.extend ({
@@ -30,7 +30,9 @@ var RecipeListView = Backbone.View.extend ({
     render: function () {
         var source = $('#recipe-list-template').html();
         var template = Handlebars.compile(source);
-        var rendered = template({recipeCollection: this.collection.toJSON()})
+        var ourJSON = recipesJSON.matches;
+        console.log(recipeCollection);
+        var rendered = template({recipeCollection: recipesJSON.matches});
         this.$el.html(rendered);
         return this;
     }

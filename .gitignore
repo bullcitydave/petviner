@@ -5,3 +5,7 @@ bower_components
 test/bower_components
 .DS_Store
 .idea/*
+sample*
+app/sample*
+app/scripts/sample*
+scripts/mega*
