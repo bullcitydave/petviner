@@ -30,8 +30,6 @@ var RecipeListView = Backbone.View.extend ({
     render: function () {
         var source = $('#recipe-list-template').html();
         var template = Handlebars.compile(source);
-        var ourJSON = recipesJSON.matches;
-        console.log(recipeCollection);
         var rendered = template({recipeCollection: recipesJSON.matches});
         this.$el.html(rendered);
         return this;
