@@ -2,17 +2,14 @@
 
   <div class='vineItem' id='{{postId}}'>
     <div class="video">
-      <video width="100%"  controls>
-<source src="{{videoUrl}}" type="video/mp4">
+      <iframe class="vine-embed" src="{{permalinkUrl}}/embed/simple" frameborder="0"></iframe>
     </div>
-    <p>{{username}}</p>
-    <p>{{permalinkUrl}}</p>
-    <p>{{description}}</p>
+    <p id = "username">{{username}}</p>
+    <p id = "description">{{description}}</p>
     <p>
       <a href="#/cats"><button class="vine-selection-button">Back to List</button></a>
       <a href="#/home"><button class="vine-selection-button">Home</button></a>
     </p>
   </div>
 
-  <iframe class="vine-embed" src="{{permalinkUrl}}/embed/simple" width="600" height="600" frameborder="0"></iframe>
-  </script>
+</script>

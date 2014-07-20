@@ -143,3 +143,11 @@ header.modal-header {
     margin: 0 12.5px 0 12.5px;
     width: 200px;
 }
+
+.video {
+  @include span-columns(10 of 12);
+  @include shift(1);
+  .vine-embed{
+    @include size(600px 600px);
+  }
+}
