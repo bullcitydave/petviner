@@ -14,19 +14,21 @@ var VineCollection = Backbone.Collection.extend ({
   model: Vine,
 
   url: 'https://api.vineapp.com/timelines/tags/cat',
-  parse: function(response) {
-            return response.results;
-        },
-  sync: function(method, model, options) {
-            var that = this;
-                var params = _.extend({
-                    type: 'GET',
-                    dataType: 'jsonp',
-                    url: that.url,
-                    processData: false
-                }, options);
 
-            return $.ajax(params);
+  // sync: function(method, model, options) {
+  //           var that = this;
+  //               var params = _.extend({
+  //                   type: 'GET',
+  //                   dataType: 'jsonp',
+  //                   url: that.url,
+  //                   processData: false
+  //               }, options);
+  //
+  //           return $.ajax(params);
+  //       },
+
+  parse: function(data) {
+            return data.records;
         }
 
 
@@ -73,7 +75,7 @@ var VineListView = Backbone.View.extend ({
       //           json = data;
       //       }
       // })
-      var rendered = template({vineCollection: this.collection.toJSON()});
+      var rendered = template({vineCollection: this.collection.data.records.toJSON()});
       // var rendered = template({vineCollection: data.matches});
       // this.$el.html(rendered);
       $('.container').html(rendered);
