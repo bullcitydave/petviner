@@ -1,25 +1,31 @@
 //Build the Model
 var Vine = Backbone.Model.extend ({
-  defaults: {
-    postID: '',
-    created: '',
-    videoURL: ''
-  },
-});
+    defaults: function(){
+          return {
+              postID: '',
+              created: '',
+              videoUrl: '',
+              username: '',
+              permalinkUrl:''
+            };
+      }
+    })
 
 //Instantiate the Model
 var vine = new Vine();
 
+
+
+
 var VineCollection = Backbone.Collection.extend ({
   model: Vine,
 
-  url: 'https://api.vineapp.com/timelines/tags/cat',
+//   url: 'https://api.vineapp.com/timelines/tags/cat',
+url: 'http://www.mocky.io/v2/53cb26dd88ee9d471b7ecba1',
 
-  parse: function(data) {
-            return results.data.records;
-        },
-
-
+  // parse: function(results) {
+  //           return results.data.records;
+  //       },
 
 
   sync: function(method, model, options) {
@@ -58,15 +64,16 @@ var vineCollection = new VineCollection({
 
 //View for our vine collection
 var VineListView = Backbone.View.extend ({
-
+  className : 'list',
     initialize:function(){
        this.collection.fetch({
          success: function(){
               console.log('Yay!');
-              this.render();
+              console.log(this.collection);
+
           }
       })
-
+      // this.render();
 
     },
 
@@ -84,8 +91,7 @@ var VineListView = Backbone.View.extend ({
       // })
       var rendered = template({vineCollection: this.collection.toJSON()});
       // var rendered = template({vineCollection: data.matches});
-      // this.$el.html(rendered);
-      $('.container').html(rendered);
+      this.$el.html(rendered);
       return this;
 
 
@@ -115,3 +121,8 @@ var VineView = Backbone.View.extend ({
 //
 // var j = myGetJSON();
 // console.log(j);
+
+
+$(document).ready(function() {
+    $('.list').append(vineListView.render().$el);
+    });

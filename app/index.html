@@ -23,20 +23,22 @@
   </head>
   <body>
     <div class='container'></div>
+<div class='list'>
+</div>
+    <script type='text/x-handlebars-template' id='vine-list-template'>
 
-    <script type='text/template' id='vine-list-template'>
-      <div class='list'>
         {{#each vineCollection}}
           <div class='result'>
             <video width="320" height="240" controls>
-  <source src={{videoURL}} type="video/mp4">
-            <p>{{title}}</p>
+  <source src="{{videoUrl}}" type="video/mp4">
+            <p>{{username}}</p>
+            <p>{{permalinkUrl}}</p>
           </div>
         {{/each}}
-      </div>
+
     </script>
 
-    <script type='text/template' id='vine-template'>
+    <script type='text/x-handlebars-template' id='vine-template'>
       <div class='vine'>
         <p>{{title}}</p>
       </div>
