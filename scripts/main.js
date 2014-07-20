@@ -23,8 +23,8 @@ var vine = new Vine();
 var VineCollection = Backbone.Collection.extend ({
   model: Vine,
 
-  url: 'https://api.vineapp.com/timelines/tags/cat',
-// url: 'http://www.mocky.io/v2/53cb43667313bbe4019ef820',
+  // url: 'https://api.vineapp.com/timelines/tags/cat',
+url: 'http://www.mocky.io/v2/53cb43667313bbe4019ef820',
 
   parse: function(results) {
             return results.data.records;
@@ -137,7 +137,7 @@ var AppRouter = Backbone.Router.extend({
         $('.container').html(vineListView.render().$el);
     })
 
-    app_router.on('route:home', function() {
+    app_router.on('route:entry', function() {
         console.log('Going home...');
         $('.container').replaceWith($('.vine-choices'));
     })
