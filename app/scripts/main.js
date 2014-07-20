@@ -90,9 +90,14 @@ var VineSingleView = Backbone.View.extend({
     render: function(id){
         var source = $('#vine-single-template').html();
         var template = Handlebars.compile(source);
-          var rendered = template({vine: vineCollection.get(id).toJSON()});
-        this.$el.html(rendered);
-        return this;
+        console.log('Attempting to render model id' + id);
+        //   var rendered = template({vine: vineCollection.get(id).toJSON()});
+        // this.$el.html(rendered);
+        var m = vineCollection.get(id);
+        this.$el.html(template(m.toJSON()));
+        // .done(function(){
+          return this;
+        // });
         }
 
 
