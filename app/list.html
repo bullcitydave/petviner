@@ -1,0 +1,21 @@
+<script type='text/x-handlebars-template' id='vine-list-template'>
+
+    {{#each vineCollection}}
+      <div class='result' id='{{postId}}'>
+        <a href="#/cats/{{postId}}"><div class="video"><video width="320" height="240" controls>
+<source src="{{videoUrl}}" type="video/mp4"></div>
+        <p>{{username}}</p>
+        <p>{{permalinkUrl}}</p>
+        <p>{{description}}</p>
+        </a>
+      </div>
+    {{/each}}
+    <nav id="footer-nav">
+      <ul>
+        <li>
+          <a href="#/home"><button class="vine-selection-button">Home</button></a>
+        </li>
+        </ul>
+        </nav>
+
+</script>
