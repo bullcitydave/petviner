@@ -49,18 +49,18 @@ var vineCollection = new VineCollection({
 
 });
 
-//View for our vine collection
+//View for the vine collection
 var VineListView = Backbone.View.extend ({
   className : 'list',
     initialize:function(){
        var self = this;
        this.collection.fetch({
          success: function(){
-              console.log('Yay!');
-              console.log(this.collection);
+              console.log('Collection ready to be rendered');
           }
        }).done(function(){
-           self.render();
+          //  self.render();
+          console.log(this + ' fetched');
          });
     },
 
@@ -128,18 +128,18 @@ var AppRouter = Backbone.Router.extend({
 
 
     app_router.on('route:getVine', function(postId) {
-        console.log('Getting vine ' + postId);
+        console.log('Presenting vine ' + postId);
         $('.container').html(vineSingleView.render(postId).$el);
     })
 
     app_router.on('route:mainList', function() {
-        console.log('Returning to video list');
+        console.log('Presenting video list');
         $('.container').html(vineListView.render().$el);
     })
 
     app_router.on('route:entry', function() {
         console.log('Going home...');
-        $('.container').replaceWith($('.vine-choices'));
+        $('.container').html(homeView.render().$el);
     })
 
 
@@ -149,9 +149,31 @@ var AppRouter = Backbone.Router.extend({
     // Start Backbone history a necessary step for bookmarkable URL's
     Backbone.history.start();
 
+var HomeView = Backbone.View.extend ({
+	className : 'home',
+		initialize:function(){
+			console.log('Welcome to Petviner!');
+		},
+
+		render: function () {
+				var source = $('#home-template').html();
+				// var template = Handlebars.compile(source);
+				// var rendered = template();
+				this.$el.html(source);
+				console.log('Home page rendered');
+				return this;
+
+
+}
+});
+
+var homeView = new HomeView();
+
+// Launch home page
+
 $(function () {
 	'use strict';
 
-	  // $('.container').append(vineListView.render().$el);
-		// $('.container').html(vineListView.render().$el);
+		$('.container').html(homeView.render().$el);
+
 });

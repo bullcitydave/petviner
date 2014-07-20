@@ -1,15 +1,15 @@
-//View for our vine collection
+//View for the vine collection
 var VineListView = Backbone.View.extend ({
   className : 'list',
     initialize:function(){
        var self = this;
        this.collection.fetch({
          success: function(){
-              console.log('Yay!');
-              console.log(this.collection);
+              console.log('Collection ready to be rendered');
           }
        }).done(function(){
-           self.render();
+          //  self.render();
+          console.log(this + ' fetched');
          });
     },
 
