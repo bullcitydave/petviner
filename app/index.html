@@ -46,12 +46,13 @@
 
       <div class='vineItem' id='{{postId}}'>
         <div class="video">
-          <video width="320" height="240" controls>
+          <video width="100%"  controls>
 <source src="{{videoUrl}}" type="video/mp4">
         </div>
         <p>{{username}}</p>
         <p>{{permalinkUrl}}</p>
         <p>{{description}}</p>
+        <p><a href="#/home">Return to main list</p></a>
       </div>
 
     </script>
@@ -66,12 +67,10 @@
     <!-- endbuild -->
 
         <!-- build:js scripts/main.js -->
-
-        <script src="scripts/main.js"></script>
+        <script src="scripts/models.js"></script>
+        <script src="scripts/views.js"></script>
         <script src="scripts/router.js"></script>
         <script src="scripts/app.js"></script>
-
-
         <!-- endbuild -->
 </body>
 </html>
