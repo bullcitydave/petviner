@@ -1,46 +1,110 @@
 //Build the Model
-var Recipe = Backbone.Model.extend ({
+var Vine = Backbone.Model.extend ({
   defaults: {
-    recipeName: '',
-    smallImgUrls: '',
-    rating: ''
+    postID: '',
+    created: '',
+    videoURL: ''
   },
 });
 
 //Instantiate the Model
-var recipe = new Recipe({
-  recipeName: 'chicken soup'
-});
+var vine = new Vine();
 
-var RecipeCollection = Backbone.Collection.extend ({
-  model: Recipe
+var VineCollection = Backbone.Collection.extend ({
+  model: Vine,
+
+  url: 'https://api.vineapp.com/timelines/tags/cat',
+
+  // sync: function(method, model, options) {
+  //           var that = this;
+  //               var params = _.extend({
+  //                   type: 'GET',
+  //                   dataType: 'jsonp',
+  //                   url: that.url,
+  //                   processData: false
+  //               }, options);
+  //
+  //           return $.ajax(params);
+  //       },
+
+  parse: function(data) {
+            return data.records;
+        }
+
+
+
+  // url: 'http://api.yummly.com/v1/api/vines?_app_id=2aacde19&_app_key=e8bce795e7a1dc7c96574390c998df81&q=%20chicken+soup',
+  // sync: function(method, model, options) {
+  //     options.timeout = 10000;
+  //     options.dataType = "jsonp";
+  //     options.jsonp = "JSONPcallback";
+  //     return Backbone.sync(method, model, options);
+
+
+
 });
 
 //Instantiate the Collection
-var recipeCollection = new RecipeCollection();
+var vineCollection = new VineCollection({
 
-//View for our recipe collection
-var RecipeListView = Backbone.View.extend ({
+});
+
+//View for our vine collection
+var VineListView = Backbone.View.extend ({
 
     initialize:function(){
-        this.render();
+       this.collection.fetch({
+         success: function(){
+              console.log('Yay!');
+              this.render();
+          }
+      })
+
+
     },
 
     render: function () {
-        var source = $('#recipe-list-template').html();
+        var source = $('#vine-list-template').html();
         var template = Handlebars.compile(source);
-        var rendered = template(recipe.toJSON());
-        this.$el.html(rendered);
-        return this;
-    }
+        console.log('Did I make it to render?');
+      //   var vinesJSON = $.ajax('http://api.yummly.com/v1/api/vines?_app_id=2aacde19&_app_key=e8bce795e7a1dc7c96574390c998df81&q=%20chicken+soup',{
+      //       'async': false,
+      //       'global': false,
+      //       'dataType': "jsonp",
+      //       complete: function(data){
+      //           json = data;
+      //       }
+      // })
+      var rendered = template({vineCollection: this.collection.data.records.toJSON()});
+      // var rendered = template({vineCollection: data.matches});
+      // this.$el.html(rendered);
+      $('.container').html(rendered);
+      return this;
+
+
+}
 });
 
-//Instantiate the Recipe List view
-var recipeListView = new RecipeListView ({
-  collection: recipeCollection
+//Instantiate the Vine List view
+var vineListView = new VineListView ({
+  collection: vineCollection
 });
 
-//View for the recipe that you've chosen
-var RecipeView = Backbone.View.extend ({
-
+//View for the vine that you've chosen
+var VineView = Backbone.View.extend ({
 });
+
+
+
+// $(function () {
+// 	'use strict';
+// 	// populate our default list view
+// 	$('.container').append(vineListView.render().$el);
+// });
+
+
+
+
+//
+// var j = myGetJSON();
+// console.log(j);
