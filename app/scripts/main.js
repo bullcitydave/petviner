@@ -21,7 +21,7 @@ var VineCollection = Backbone.Collection.extend ({
   model: Vine,
 
 //   url: 'https://api.vineapp.com/timelines/tags/cat',
-url: 'http://www.mocky.io/v2/53cb3aee7313bb09019ef81e',
+url: 'http://www.mocky.io/v2/53cb43667313bbe4019ef820',
 
   parse: function(results) {
             return results.data.records;

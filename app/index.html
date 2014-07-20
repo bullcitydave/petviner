@@ -29,10 +29,11 @@
 
         {{#each vineCollection}}
           <div class='result'>
-            <video width="320" height="240" controls>
-  <source src="{{videoUrl}}" type="video/mp4">
+            <div id="video"><video width="320" height="240" controls>
+  <source src="{{videoUrl}}" type="video/mp4"></div>
             <p>{{username}}</p>
             <p>{{permalinkUrl}}</p>
+            <p>{{description}}</p>
           </div>
         {{/each}}
 
@@ -40,7 +41,7 @@
 
     <script type='text/x-handlebars-template' id='vine-template'>
       <div class='vine'>
-        <p>{{title}}</p>
+        <p>{{description}}</p>
       </div>
     </script>
 
