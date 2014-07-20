@@ -4,7 +4,7 @@ var AppRouter = Backbone.Router.extend({
 
              'videos/:postId'         :     'getVine',
 
-             'home'               :     'showList',
+             'home'               :     'mainList',
 
              '*actions'      :     'defaultRoute'
 
@@ -18,7 +18,12 @@ var AppRouter = Backbone.Router.extend({
 
     app_router.on('route:getVine', function(postId) {
         console.log('Getting vine ' + postId);
-        $('.vine-single').html(vineSingleView.render(postId).$el);
+        $('.container').html(vineSingleView.render(postId).$el);
+    })
+
+    app_router.on('route:mainList', function(postId) {
+        console.log('Returning to main list');
+        $('.container').html(vineListView.render().$el);
     })
 
 
