@@ -1,11 +1,10 @@
-backbone.js
+Petviner
 ===========
 
+A view into vines of your favorite pets
 
-explanation
-yummly API #
 
 dependencies
 ____________
 backbone.js
-underscore.js
+handlebars.js

@@ -28,7 +28,7 @@ var AppRouter = Backbone.Router.extend({
         $('.container').html(vineListView.render().$el);
     })
 
-    app_router.on('route:home', function() {
+    app_router.on('route:entry', function() {
         console.log('Going home...');
         $('.container').replaceWith($('.vine-choices'));
     })
