@@ -1,10 +1,10 @@
 /////////////////////////////////////////////////////////////////////////
-//    __  ___                _______             ___                   
+//    __  ___                _______             ___
 //   /  |/  /__ ___ ____ _  /_  __(_)__  __ __  / _ \_______ __ ____ __
 //  / /|_/ / -_) _ `/ _ `/   / / / / _ \/ // / / ___/ __/ _ \\ \ / // /
-// /_/  /_/\__/\_, /\_,_/   /_/ /_/_//_/\_, / /_/  /_/  \___/_\_\\_, / 
-//            /___/                    /___/                    /___/  
-// 
+// /_/  /_/\__/\_, /\_,_/   /_/ /_/_//_/\_, / /_/  /_/  \___/_\_\\_, /
+//            /___/                    /___/                    /___/
+//
 //             A fun tiny proxy for when you barely care.
 //                              v0.0.1
 ////////////////////////////////////////////////////////////////////////
@@ -51,7 +51,7 @@ app.use(express.static(__dirname + '/dist'));
 //////////////////////////////////////////
 
 app.use('/api/collections/:collId', function(req, res) {
-  var url = "http://tiny-pizza-server.herokuapp.com/collections/" + req.params.collId; 
+  var url = "http://tiny-pizza-server.herokuapp.com/collections/" + req.params.collId;
   reportProxy(req, url);
   req.pipe(request(url)).pipe(res);
 });
@@ -61,7 +61,7 @@ app.use('/api/collections/:collId', function(req, res) {
 // Go for the Gold!
 //////////////////////////////////////////
 
-app.listen(3000);
+app.listen(9000);
 
 console.log("Hey!".red + " Welcome to ".blue + "Mega Tiny Proxy".yellow + "!".blue + "\
              \nWaiting to make your dreams come true...".green + "♡".magenta);

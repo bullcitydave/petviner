@@ -14,9 +14,14 @@ var VineCollection = Backbone.Collection.extend ({
   model: Vine,
 
   url: 'https://api.vineapp.com/timelines/tags/cat',
-  parse: function(response) {
-            return response.results;
+
+  parse: function(data) {
+            return results.data.records;
         },
+
+
+
+
   sync: function(method, model, options) {
             var that = this;
                 var params = _.extend({
@@ -28,6 +33,10 @@ var VineCollection = Backbone.Collection.extend ({
 
             return $.ajax(params);
         }
+
+
+
+
 
 
 
