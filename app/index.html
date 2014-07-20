@@ -22,27 +22,38 @@
     <!-- endbuild -->
   </head>
   <body>
-    <div class='container'></div>
-<div class='list'>
-</div>
+    <div class='container'>
+      <div class="vine-single">
+      </div>
+    </div>
+
     <script type='text/x-handlebars-template' id='vine-list-template'>
 
         {{#each vineCollection}}
-          <div class='result'>
-            <div id="video"><video width="320" height="240" controls>
+          <div class='result' id='{{postId}}'>
+            <a href="#/videos/{{postId}}"><div class="video"><video width="320" height="240" controls>
   <source src="{{videoUrl}}" type="video/mp4"></div>
             <p>{{username}}</p>
             <p>{{permalinkUrl}}</p>
             <p>{{description}}</p>
+            </a>
           </div>
         {{/each}}
 
     </script>
 
-    <script type='text/x-handlebars-template' id='vine-template'>
-      <div class='vine'>
+    <script type='text/x-handlebars-template' id='vine-single-template'>
+
+      <div class='vineItem' id='{{postId}}'>
+        <div class="video">
+          <video width="320" height="240" controls>
+<source src="{{videoUrl}}" type="video/mp4">
+        </div>
+        <p>{{username}}</p>
+        <p>{{permalinkUrl}}</p>
         <p>{{description}}</p>
       </div>
+
     </script>
 
     <!-- build:js scripts/vendor.js -->
@@ -55,8 +66,10 @@
     <!-- endbuild -->
 
         <!-- build:js scripts/main.js -->
-        <script src="scripts/samplevine.js"></script>
+
         <script src="scripts/main.js"></script>
+        <script src="scripts/router.js"></script>
+        <script src="scripts/app.js"></script>
 
 
         <!-- endbuild -->
