@@ -23,14 +23,14 @@ var vine = new Vine();
 var VineCollection = Backbone.Collection.extend ({
   model: Vine,
 
-//   url: 'https://api.vineapp.com/timelines/tags/cat',
-url: 'http://www.mocky.io/v2/53cb43667313bbe4019ef820',
+  url: 'https://api.vineapp.com/timelines/tags/cat',
+// url: 'http://www.mocky.io/v2/53cb43667313bbe4019ef820',
 
   parse: function(results) {
             return results.data.records;
         },
 
-
+// add JSONP get ability to getJSON method
   sync: function(method, model, options) {
             var that = this;
                 var params = _.extend({

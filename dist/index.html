@@ -14,25 +14,74 @@
     <script src="scripts/vendor/modernizr.js"></script>
   </head>
   <body>
-    <div class='container'></div>
 
-    <script type='text/template' id='vine-list-template'>
-      <div class='list'>
+    <header>
+      <h1>PetViner!
+      </h1>
+      </header>
+    <div class='container'>
+      <div class="vine-single">
+      </div>
+      <section class="vine-choices">
+
+          <div class="vine-selection-entry">
+            <a href="#/moksha">
+              <img class="vine-avatar-large" src="https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-xpa1/t31.0-8/1932629_10152418870378352_6293108892780372302_o.jpg">
+              <button class="vine-selection-button">Moksha</button>
+            </a>
+          </div>
+
+          <div class="vine-selection-entry">
+            <a href="#/cats">
+              <img class="vine-avatar-large" src="http://i.imgur.com/ccJDqbR.jpg">
+              <button class="vine-selection-button">Cats</button>
+            </a>
+          </div>
+      </section>
+    </div>
+
+    <script type='text/x-handlebars-template' id='vine-list-template'>
+
         {{#each vineCollection}}
-          <div class='result'>
-            <video width="320" height="240" controls>
-  <source src={{videoURL}} type="video/mp4">
-            <p>{{title}}</p>
+          <div class='result' id='{{postId}}'>
+            <a href="#/cats/{{postId}}"><div class="video"><video width="320" height="240" controls>
+  <source src="{{videoUrl}}" type="video/mp4"></div>
+            <p>{{username}}</p>
+            <p>{{permalinkUrl}}</p>
+            <p>{{description}}</p>
+            </a>
           </div>
         {{/each}}
-      </div>
+        <nav id="footer-nav">
+          <ul>
+            <li>
+              <a href="#/home"><button class="vine-selection-button">Home</button></a>
+            </li>
+            </ul>
+            </nav>
+
     </script>
 
-    <script type='text/template' id='vine-template'>
-      <div class='vine'>
-        <p>{{title}}</p>
+    <script type='text/x-handlebars-template' id='vine-single-template'>
+
+      <div class='vineItem' id='{{postId}}'>
+        <div class="video">
+          <video width="100%"  controls>
+<source src="{{videoUrl}}" type="video/mp4">
+        </div>
+        <p>{{username}}</p>
+        <p>{{permalinkUrl}}</p>
+        <p>{{description}}</p>
+        <p>
+          <a href="#/cats"><button class="vine-selection-button">Back to List</button></a>
+          <a href="#/home"><button class="vine-selection-button">Home</button></a>
+        </p>
       </div>
+
     </script>
+
+
+
 
     <script src="scripts/vendor.js"></script>
 

@@ -14,8 +14,9 @@ $small-avatar      :  75px;
 $medium-avatar     :  150px;
 $large-avatar      :  250px;
 $primary-font      :  'Luckiest Guy', Tahoma, sans-serif;
-$secondary-font    :  'Stint Ultra Condensed', 'Times New Roman', serif;
-$darkdarkred       :  '#380102';
+$secondary-font    :  "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+$primary-color     :  #871F78;
 
 body {
   background: #fafafa;
@@ -28,21 +29,52 @@ header {
     margin:auto;
     width:100%;
     font-family: $primary-font;
-    font-size: 3.5em;
+    font-size: 3.0em;
 }
 .container {
   max-width: $page-width;
   @include outer-container;
-}
 
-.list {
-  @include span-columns (12);
-}
-.result {
-  @include span-columns(4);
-  margin:0;
-}
+  div.list {
+    @include span-columns (12);
+  }
 
+  div.result {
+    @include span-columns(4);
+    margin:0;
+  }
+
+  section.vine-choices {
+    @include span-columns(8 of 12);
+    @include shift(2);
+    background-color: #f0f0f0;
+    box-shadow: black 0 0 30px 10px;
+
+    div.vine-selection-entry
+    {
+          @include span-columns(4);
+
+    }
+
+    img.vine-avatar-large
+    {
+        width:225px;
+        height:225px;
+        border-radius:75px;
+    }
+
+    p.vine-selection-name
+    {
+        @extend h2;
+        text-align:center;
+        clear:left;
+    }
+
+
+
+  }
+
+}
 
 
 
@@ -52,7 +84,7 @@ h1 {
     font-family: $primary-font;
     font-size: 3.2em;
     letter-spacing: .20em;
-    color: purple;
+    color: $primary-color;
     display: block;
     padding: 5px 0 0 0;
     text-align: center;
@@ -83,9 +115,12 @@ ul, menu, dir {
     padding: 0;
   }
 
+header.modal-header {
+    width:80%;
+}
 
 .menu-button {
-    @include button(shiny, darkred);
+    @include button(shiny, $primary-color);
     color: whitesmoke;
     margin: 5% 50% 5% 50%;
     width: 150px;
@@ -94,11 +129,9 @@ ul, menu, dir {
     margin: 5px 225px 10px 225px;
   }
 
-header.modal-header {
-    width:80%;
-}
 
-.vine-selection-button, .adopter-selection-button {
+
+.vine-selection-button {
     @extend .menu-button;
     margin: 0 37.5px 0px 37.5px;
 }
@@ -110,162 +143,3 @@ header.modal-header {
     margin: 0 12.5px 0 12.5px;
     width: 200px;
 }
-
-.vine-action {
-    @extend .menu-button;
-    margin: 65px 15px 0 0;
-    padding: 0;
-    width: 25%;
-    float: left;
-  }
-
-
-section#select-player {
-    background-color: #f0f0f0;
-    box-shadow: black 0 0 30px 10px;
-    margin: 0 auto;
-    position: absolute;
-    width: 600px;
-    top: 100px;
-    left: 100px;
-    z-index: 11;
-    height: 600px;
-    h2 {
-        text-align: center;
-}
-}
-
-section#select-adopter {
-    @extend #select-player;
-    display: none;
-}
-
-section#alert {
-    @extend #select-player;
-    display: none;
-    background-color: darkorange;
-    width: 450px;
-    height: 300px;
-    font-family: "Stint Ultra Condensed", "Times New Roman", serif;
-    font-size: 4em;
-    padding: 30px;
-    text-align: center;
-    top: 200px;
-    left: 335px;
-    color: $darkdarkred;
-    p.close {
-        border-width: medium medium 3px 3px;
-        border-style: solid;
-        border-color: #000;
-        position: relative;
-        font-size: 0.75em;
-        background: none repeat scroll 0% 0% #8B0000;
-        color: darkorange;
-        width: 100px;
-        margin: 10px auto;
-        text-align: center;
-    }
-    p.win {}  // empty class...forces gameReset()...is there a better way?
-  }
-
-
-div.vine-selection-entry, div.adopter-selection-entry
-{
-      width: 225px;
-      margin: 0 37.5px 20px 37.5px;
-      float: left;
-}
-
-div.vine-display-entry
-{
-    @extend .vine-selection-entry;
-    margin: 0 37.5px 20px 10px;
-}
-
-img.vine-avatar-large, img.adopter-avatar-large
-{
-    width:225px;
-    height:225px;
-    border-radius:75px;
-}
-
-p.vine-selection-name, p.adopter-selecton-name
-{
-    @extend h2;
-    text-align:center;
-    clear:left;
-}
-
-
-section#main-game {
-    margin: 30px 0 0 0;
-    opacity: 0.25;
-}
-
-section#sidebar {
-    float:left;
-    width:250px;
-}
-
-section#woo-battle {
-  float:left;
-  margin: 0 15px 25px 15px;
-}
-
-div.adopter-avatar {
-    float:left;
-    @include size($small-avatar $small-avatar);
-    img {
-        @include size($small-avatar $small-avatar);
-        border-radius: 25px 0 0 25px;
-    }
-}
-
-
-div.woobarprog {
-    float:left;
-    transition: all 0.5s ease;
-    font-size: 25px;
-    text-transform: uppercase;
-    // padding: 5px 10px 5px 15px;
-    border-radius: 0 25px 25px 0;
-    margin:0;
-    opacity:.7;
-    background: orange;
-    font-size: 35px;
-    letter-spacing: 5px;
-    width: 0px;
-    opacity: 1.0;
-    height: 40px;
-}
-
-div.woobar {
-    @extend .woobarprog;
-    background: darkred;
-    z-index:100;
-    width:440px;
-    padding: 0;
-}
-
-p.progress-percentage {
-    clear: left;
-    float: right;
-    font-family: $primary-font;
-    margin: 5px 10px 0 0;
-    font-size: 1em;
-    color: $darkdarkred;
-}
-
-h1#woof {
-    color: darkorange;
-    position: absolute;
-    top: 180px;
-    left: 46px;
-    font-size: 3em;
-    z-index:500;
-    span.char1, span.char2, span.char3 {
-        display: inline-block;
-        transform: skew(15deg, -45deg);
-        }
-    display:none;
-  }
