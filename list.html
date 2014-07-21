@@ -11,12 +11,12 @@
 
     {{#each vineCollection}}
       <div class='result' id='{{postId}}'>
-        <a href="#/cats/{{postId}}"><iframe class="vine-embed-small" src="{{permalinkUrl}}/embed/simple" frameborder="0"></iframe>
-        </a>
+        <iframe class="vine-embed-small" src="{{permalinkUrl}}/embed/simple" frameborder="0"></iframe>
+        <a href="#/cats/{{postId}}"> <div class='result-overlay' id='{{postId}}'> </div></a>
       </div>
-      <!-- result-overlay overrides vine embed link that would route to Vine site but also hides vine embed overlay text -->
-      <a href="#/cats/{{postId}}"> <div class='result-overlay' id='{{postId}}'> </div></a>
     {{/each}}
+
+
 
 
 </script>
