@@ -24,7 +24,8 @@ var VineCollection = Backbone.Collection.extend ({
   model: Vine,
 
   // url: 'https://api.vineapp.com/timelines/tags/cat',
-url: 'http://www.mocky.io/v2/53cb43667313bbe4019ef820',
+// url: 'http://www.mocky.io/v2/53cb43667313bbe4019ef820',
+url: 'https://api.vineapp.com/timelines/tags/moksha?callback=',
 
   parse: function(results) {
             return results.data.records;
@@ -35,7 +36,7 @@ url: 'http://www.mocky.io/v2/53cb43667313bbe4019ef820',
             var that = this;
                 var params = _.extend({
                     type: 'GET',
-                    dataType: 'jsonp',
+                    dataType: 'json',
                     url: that.url,
                     processData: false
                 }, options);
@@ -54,8 +55,9 @@ var VineListView = Backbone.View.extend ({
   className : 'list',
     initialize:function(){
        var self = this;
-       this.collection.fetch({
-         success: function(){
+       this.collection.fetch(
+         {dataType: "jsonp"},
+         {success: function(){
               console.log('Collection ready to be rendered');
           }
        }).done(function(){
@@ -157,8 +159,6 @@ var HomeView = Backbone.View.extend ({
 
 		render: function () {
 				var source = $('#home-template').html();
-				// var template = Handlebars.compile(source);
-				// var rendered = template();
 				this.$el.html(source);
 				console.log('Home page rendered');
 				return this;
@@ -173,10 +173,11 @@ var homeView = new HomeView();
 
 $(function () {
 	'use strict';
+
 		$('#single').load("single.html");
 		$('#list').load("list.html");
 		$('#homepage').load("home.html", function() {
-			console.log( "Home page loaded" );
 			$('.container').html(homeView.render().$el);
+			$('h1').lettering();
 		});
 });
