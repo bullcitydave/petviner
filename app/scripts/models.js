@@ -24,7 +24,8 @@ var VineCollection = Backbone.Collection.extend ({
   model: Vine,
 
   // url: 'https://api.vineapp.com/timelines/tags/cat',
-url: 'http://www.mocky.io/v2/53cb43667313bbe4019ef820',
+// url: 'http://www.mocky.io/v2/53cb43667313bbe4019ef820',
+url: 'https://api.vineapp.com/timelines/tags/moksha?callback=',
 
   parse: function(results) {
             return results.data.records;
@@ -35,7 +36,7 @@ url: 'http://www.mocky.io/v2/53cb43667313bbe4019ef820',
             var that = this;
                 var params = _.extend({
                     type: 'GET',
-                    dataType: 'jsonp',
+                    dataType: 'json',
                     url: that.url,
                     processData: false
                 }, options);
