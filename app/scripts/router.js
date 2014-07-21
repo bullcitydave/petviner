@@ -8,7 +8,7 @@ var AppRouter = Backbone.Router.extend({
 
              'home'                     :     'entry',
 
-             '*actions'      :     'defaultRoute'
+             'moksha'      :     'defaultRoute'
 
 
         }
