@@ -82,14 +82,27 @@ header {
 h1 {
     @include span-columns(11 of 11);
     font-family: $primary-font;
-    font-size: 3.2em;
+    font-size: 2.5em;
     letter-spacing: .20em;
     color: $primary-color;
     display: block;
     padding: 5px 0 0 0;
     text-align: center;
-    margin: 25px 0 0 0;
-  }
+    margin: 25px 0 35px 0;
+
+    span.char4, span.char5, span.char6, span.char7 {
+      color: $hover-shadow;
+      display: inline-block;
+      transform: skew(15deg, -45deg);
+    }
+
+    span.char9 {
+      color: black;
+      display: inline-block;
+      transform: skew(-15deg, 45deg);
+    }
+    }
+
 
 h2 {
     font-family: $secondary-font;
