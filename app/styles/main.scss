@@ -38,6 +38,7 @@ header {
     @include span-columns (12);
     box-shadow: $hover-shadow 0 0 20px 20px;
     margin: 0 20px 0 20px;
+    padding: 0 0 0 35px;
   }
 
   div.result {
@@ -50,6 +51,7 @@ header {
     @include shift(1);
     background-color: #f0f0f0;
     box-shadow: black 0 0 30px 10px;
+    padding: 30px;
 
     div.vine-selection-entry
     {
@@ -179,7 +181,7 @@ nav.hor-nav {
 .video {
   // @include span-columns(12);
   padding: 0 10px 0 10px;
-  float:none;
+  float:left;
   .vine-embed{
     // @include span-columns(9);
     @include size(600px 600px);

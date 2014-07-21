@@ -23,9 +23,9 @@ var vine = new Vine();
 var VineCollection = Backbone.Collection.extend ({
   model: Vine,
 
-  // url: 'https://api.vineapp.com/timelines/tags/cat',
-// url: 'http://www.mocky.io/v2/53cb43667313bbe4019ef820',
-url: 'https://api.vineapp.com/timelines/tags/moksha?callback=',
+
+  url: 'http://www.mocky.io/v2/53cb43667313bbe4019ef820',
+
 
   parse: function(results) {
             return results.data.records;
@@ -36,7 +36,7 @@ url: 'https://api.vineapp.com/timelines/tags/moksha?callback=',
             var that = this;
                 var params = _.extend({
                     type: 'GET',
-                    dataType: 'json',
+                    dataType: 'jsonp',
                     url: that.url,
                     processData: false
                 }, options);
@@ -144,7 +144,9 @@ var AppRouter = Backbone.Router.extend({
         $('.container').html(homeView.render().$el);
     })
 
-
+    app_router.on('route:defaultRoute', function() {
+        alert('Sorry, that function is not yet available.')
+    })
 
 
 
