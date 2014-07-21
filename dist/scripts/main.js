@@ -1,54 +1,40 @@
-//Build the Model
 var Vine = Backbone.Model.extend ({
-    defaults: function(){
-          return {
-              postId: '',
-              created: '',
-              videoUrl: '',
-              username: '',
-              permalinkUrl:''
-            };
-      },
       idAttribute: "postId"
-    });
+});
 
-
-
-//Instantiate the Model
-var vine = new Vine();
-
-
-
+// var vine = new Vine();
 
 var VineCollection = Backbone.Collection.extend ({
   model: Vine,
-
-
-  url: 'http://www.mocky.io/v2/53cb43667313bbe4019ef820',
-
+  // url: 'http://www.mocky.io/v2/53cb43667313bbe4019ef820',
+  url: 'https://api.vineapp.com/timelines/tags/cat',
 
   parse: function(results) {
-            return results.data.records;
-        },
+      return results.data.records;
+  }
 
-// add JSONP get ability to getJSON method
-  sync: function(method, model, options) {
-            var that = this;
-                var params = _.extend({
-                    type: 'GET',
-                    dataType: 'jsonp',
-                    url: that.url,
-                    processData: false
-                }, options);
-
-            return $.ajax(params);
-        }
+// add JSONP get ability use getJSON method
+  // sync: function(method, model, options) {
+  //           var that = this;
+  //               var params = _.extend({
+  //                   type: 'GET',
+  //
+  //                   // jsonpCallback: 'callback', // just added
+  //                   url: that.url,
+  //                   processData: false
+  //               }, options);
+  //
+  //           return $.ajax(params);
+  //       }
 });
 
-//Instantiate the Collection
-var vineCollection = new VineCollection({
+var vineCollection = new VineCollection();
 
-});
+
+//
+// var dogvineCollection = new VineCollection({
+//     url: 'http://www.mocky.io/v2/53ccb3a6b23e01c703bdafec'
+// });
 
 //View for the vine collection
 var VineListView = Backbone.View.extend ({
@@ -56,7 +42,6 @@ var VineListView = Backbone.View.extend ({
     initialize:function(){
        var self = this;
        this.collection.fetch(
-         {dataType: "jsonp"},
          {success: function(){
               console.log('Collection ready to be rendered');
           }
@@ -82,6 +67,8 @@ var VineListView = Backbone.View.extend ({
 var vineListView = new VineListView ({
   collection: vineCollection
 });
+
+var vineCollection = new VineCollection();
 
 var VineSingleView = Backbone.View.extend({
 
@@ -125,7 +112,11 @@ var AppRouter = Backbone.Router.extend({
         }
     });
 
-    // Initiate the router
+
+
+
+
+
     var app_router = new AppRouter;
 
 

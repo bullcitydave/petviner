@@ -4,7 +4,6 @@ var VineListView = Backbone.View.extend ({
     initialize:function(){
        var self = this;
        this.collection.fetch(
-         {dataType: "jsonp"},
          {success: function(){
               console.log('Collection ready to be rendered');
           }
@@ -30,6 +29,8 @@ var VineListView = Backbone.View.extend ({
 var vineListView = new VineListView ({
   collection: vineCollection
 });
+
+var vineCollection = new VineCollection();
 
 var VineSingleView = Backbone.View.extend({
 
