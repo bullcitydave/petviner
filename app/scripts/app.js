@@ -22,7 +22,10 @@ var homeView = new HomeView();
 
 $(function () {
 	'use strict';
-
-		$('.container').html(homeView.render().$el);
-
+		$('#single').load("single.html");
+		$('#list').load("list.html");
+		$('#homepage').load("home.html", function() {
+			console.log( "Home page loaded" );
+			$('.container').html(homeView.render().$el);
+		});
 });

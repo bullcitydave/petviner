@@ -1,0 +1,22 @@
+<script type='text/x-handlebars-template' id='vine-list-template'>
+
+<nav class="hor-nav">
+  <ul>
+    <li>
+      <a href="#/home"><button class="vine-selection-button">Home</button></a>
+    </li>
+  </ul>
+</nav>
+
+
+    {{#each vineCollection}}
+      <div class='result' id='{{postId}}'>
+        <a href="#/cats/{{postId}}"><iframe class="vine-embed-small" src="{{permalinkUrl}}/embed/simple" frameborder="0"></iframe>
+        </a>
+      </div>
+      <!-- result-overlay overrides vine embed link that would route to Vine site but also hides vine embed overlay text -->
+      <a href="#/cats/{{postId}}"> <div class='result-overlay' id='{{postId}}'> </div></a>
+    {{/each}}
+
+
+</script>

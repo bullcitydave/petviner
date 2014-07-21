@@ -1,26 +1,25 @@
- // Bourbon & Neat
+// Bourbon & Neat
 @import '../../bower_components/bourbon/dist/bourbon';
 @import '../../bower_components/neat/app/assets/stylesheets/neat';
 
 // fonts
 @import url(http://fonts.googleapis.com/css?family=Luckiest+Guy);
-@import url(http://fonts.googleapis.com/css?family=Stint+Ultra+Condensed);
+@import url(http://fonts.googleapis.com/css?family=Noto+Sans:400,700);
 
 
 * { @include box-sizing(border-box); }
 
 $page-width        :  960px;
-$small-avatar      :  75px;
-$medium-avatar     :  150px;
 $large-avatar      :  250px;
 $primary-font      :  'Luckiest Guy', Tahoma, sans-serif;
-$secondary-font    :  "Helvetica Neue", Helvetica, Arial, sans-serif;
+$secondary-font    :  "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 
 $primary-color     :  #871F78;
+$hover-shadow      :  #CC00FF;
 
 body {
-  background: #fafafa;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  background: #F5F5DC;
+  font-family: $secondary-font;
   color: #333;
   margin: 0;
 }
@@ -37,6 +36,8 @@ header {
 
   div.list {
     @include span-columns (12);
+    box-shadow: $hover-shadow 0 0 20px 20px;
+    margin: 0 20px 0 20px;
   }
 
   div.result {
@@ -45,8 +46,8 @@ header {
   }
 
   section.vine-choices {
-    @include span-columns(8 of 12);
-    @include shift(2);
+    @include span-columns(10);
+    @include shift(1);
     background-color: #f0f0f0;
     box-shadow: black 0 0 30px 10px;
 
@@ -78,9 +79,8 @@ header {
 
 
 
-
-
 h1 {
+    @include span-columns(11 of 11);
     font-family: $primary-font;
     font-size: 3.2em;
     letter-spacing: .20em;
@@ -92,7 +92,7 @@ h1 {
   }
 
 h2 {
-    font-family: $primary-font;
+    font-family: $secondary-font;
     letter-spacing: .18em;
     font-size: 1.3em;
     -webkit-margin-before: 0.0;
@@ -115,31 +115,83 @@ ul, menu, dir {
     padding: 0;
   }
 
-header.modal-header {
-    width:80%;
-}
-
-.menu-button {
-    @include button(shiny, $primary-color);
-    color: whitesmoke;
-    margin: 5% 50% 5% 50%;
-    width: 150px;
-    font-family: $primary-font;
-    width: 150px;
-    margin: 5px 225px 10px 225px;
+li
+  {
+    list-style: none;
+    -webkit-margin-before: 0em;
+-webkit-margin-after: 0em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+-webkit-padding-start: 0px;
   }
 
-
-
-.vine-selection-button {
-    @extend .menu-button;
-    margin: 0 37.5px 0px 37.5px;
+nav.hor-nav {
+  text-align:center;
 }
 
-.vine-display-button {
-    @extend .vine-selection-button;
-    font-family: 'Luckiest Guy';
-    font-size: 30px;
-    margin: 0 12.5px 0 12.5px;
-    width: 200px;
+.vine-selection-button {
+    @include button(shiny, $primary-color);
+    color: whitesmoke;
+    margin: 12.5px 37.5px 12.5px 37.5px;
+    width: 150px;
+    font-family: $primary-font;
+  }
+
+.vine-selection-button:hover {
+    @include button(shiny, $hover-shadow);
+  }
+
+// VIDEO LIST VIEW
+
+.list {
+  .result {
+    .vine-embed {
+      @include size(225px 225px);
+      box-shadow: $primary-color 0 0 8px 8px;
+    }
+  }
+  .result-overlay {
+    opacity: .05;
+    z-index: 10000;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+
+// SINGLE VIDEO VIEW
+// NEAT not playing nice with embed
+.video {
+  // @include span-columns(12);
+  padding: 0 10px 0 10px;
+  float:none;
+  .vine-embed{
+    // @include span-columns(9);
+    @include size(600px 600px);
+    box-shadow: $hover-shadow 0 0 20px 20px
+  }
+  .video-sidebar {
+    // @include span-columns(3 of 12);
+    width: 340px;
+    float:right;
+    border: solid 5px black;
+    border-radius: 20px;
+    padding: 0px 20px 0px 20px;
+    height:600px;
+
+    .username {
+      color: $primary-color;
+      padding: 25px;
+      font-size: 2.5em;
+      height: 150px;
+      font-weight: bold;
+    }
+    .description {
+      padding: 25px;
+      font-size: 2em;
+      max-height: 300px;
+    }
+  }
 }

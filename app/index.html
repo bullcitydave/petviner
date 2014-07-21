@@ -24,77 +24,17 @@
   <body>
 
     <header>
-      <h1>PetViner!
-      </h1>
+      <h1><a href="#">PetViner!</a></h1>
       </header>
     <div class='container'>
       <div class="vine-single">
       </div>
     </div>
 
-
-    <script type='text/x-handlebars-template' id='vine-list-template'>
-
-        {{#each vineCollection}}
-          <div class='result' id='{{postId}}'>
-            <a href="#/cats/{{postId}}"><div class="video"><video width="320" height="240" controls>
-  <source src="{{videoUrl}}" type="video/mp4"></div>
-            <p>{{username}}</p>
-            <p>{{permalinkUrl}}</p>
-            <p>{{description}}</p>
-            </a>
-          </div>
-        {{/each}}
-        <nav id="footer-nav">
-          <ul>
-            <li>
-              <a href="#/home"><button class="vine-selection-button">Home</button></a>
-            </li>
-            </ul>
-            </nav>
-
-    </script>
-
-    <script type='text/x-handlebars-template' id='vine-single-template'>
-
-      <div class='vineItem' id='{{postId}}'>
-        <div class="video">
-          <video width="100%"  controls>
-<source src="{{videoUrl}}" type="video/mp4">
-        </div>
-        <p>{{username}}</p>
-        <p>{{permalinkUrl}}</p>
-        <p>{{description}}</p>
-        <p>
-          <a href="#/cats"><button class="vine-selection-button">Back to List</button></a>
-          <a href="#/home"><button class="vine-selection-button">Home</button></a>
-        </p>
-      </div>
-
-    </script>
-
-    <script type='text/x-handlebars-template' id='home-template'>
-      <section class="vine-choices">
-          <div class="vine-selection-entry">
-            <a href="#/moksha">
-              <img class="vine-avatar-large" src="https://fbcdn-sphotos-g-a.akamaihd.net/hphotos-ak-xpa1/t31.0-8/1932629_10152418870378352_6293108892780372302_o.jpg">
-              <button class="vine-selection-button">Moksha</button>
-            </a>
-          </div>
-
-          <div class="vine-selection-entry">
-            <a href="#/cats">
-              <img class="vine-avatar-large" src="http://i.imgur.com/ccJDqbR.jpg">
-              <button class="vine-selection-button">Cats</button>
-            </a>
-          </div>
-      </section>
-    </script>
-
-
-
-
-
+    <!-- Divs to store templates -->
+    <div id = "list"></div>
+    <div id = "homepage"></div>
+    <div id = "single"></div>
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
@@ -105,11 +45,15 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-        <!-- build:js scripts/main.js -->
-        <script src="scripts/models.js"></script>
-        <script src="scripts/views.js"></script>
-        <script src="scripts/router.js"></script>
-        <script src="scripts/app.js"></script>
-        <!-- endbuild -->
+    <!-- used with the Vine embed -->
+    <script src="scripts/embed.js"></script>
+
+    <!-- build:js scripts/main.js -->
+    <script src="scripts/models.js"></script>
+    <script src="scripts/views.js"></script>
+    <script src="scripts/router.js"></script>
+    <script src="scripts/app.js"></script>
+    <!-- endbuild -->
+
 </body>
 </html>
