@@ -8,7 +8,7 @@ var AppRouter = Backbone.Router.extend({
 
              'home'                     :     'entry',
 
-             '*actions'      :     'defaultRoute'
+             'moksha'      :     'defaultRoute'
 
 
         }
@@ -33,7 +33,9 @@ var AppRouter = Backbone.Router.extend({
         $('.container').html(homeView.render().$el);
     })
 
-
+    app_router.on('route:defaultRoute', function() {
+        alert('Sorry, that function is not yet available.')
+    })
 
 
 
