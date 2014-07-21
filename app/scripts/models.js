@@ -24,7 +24,8 @@ var VineCollection = Backbone.Collection.extend ({
   model: Vine,
 
 
-  url: 'http://www.mocky.io/v2/53cb43667313bbe4019ef820',
+  // url: 'http://www.mocky.io/v2/53cb43667313bbe4019ef820',
+  url: 'http://0.0.0.0:3000/api/timelines/tags/cats',
 
 
   parse: function(results) {
@@ -32,17 +33,18 @@ var VineCollection = Backbone.Collection.extend ({
         },
 
 // add JSONP get ability to getJSON method
-  sync: function(method, model, options) {
-            var that = this;
-                var params = _.extend({
-                    type: 'GET',
-                    dataType: 'jsonp',
-                    url: that.url,
-                    processData: false
-                }, options);
+//   sync: function(method, model, options) {
+//             var that = this;
+//                 var params = _.extend({
+//                     type: 'GET',
+//                     dataType: 'jsonp',
+//                     url: that.url,
+//                     processData: false
+//                 }, options);
+//
+//             return $.ajax(params);
+//         }
 
-            return $.ajax(params);
-        }
 });
 
 //Instantiate the Collection
