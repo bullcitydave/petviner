@@ -1,4 +1,4 @@
- // Bourbon & Neat
+// Bourbon & Neat
 @import '../../bower_components/bourbon/dist/bourbon';
 @import '../../bower_components/neat/app/assets/stylesheets/neat';
 
@@ -10,8 +10,6 @@
 * { @include box-sizing(border-box); }
 
 $page-width        :  960px;
-$small-avatar      :  75px;
-$medium-avatar     :  150px;
 $large-avatar      :  250px;
 $primary-font      :  'Luckiest Guy', Tahoma, sans-serif;
 $secondary-font    :  "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -120,7 +118,16 @@ ul, menu, dir {
 li
   {
     list-style: none;
+    -webkit-margin-before: 0em;
+-webkit-margin-after: 0em;
+-webkit-margin-start: 0px;
+-webkit-margin-end: 0px;
+-webkit-padding-start: 0px;
   }
+
+nav.hor-nav {
+  text-align:center;
+}
 
 .vine-selection-button {
     @include button(shiny, $primary-color);
@@ -134,20 +141,45 @@ li
     @include button(shiny, $hover-shadow);
   }
 
+// VIDEO LIST VIEW
 
+.list {
+  .result {
+    .vine-embed {
+      @include size(225px 225px);
+      box-shadow: $primary-color 0 0 8px 8px;
+    }
+  }
+  .result-overlay {
+    opacity: .05;
+    z-index: 10000;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 100%;
+  }
+}
+
+
+// SINGLE VIDEO VIEW
+// NEAT not playing nice with embed
 .video {
-  @include span-columns(9 of 12);
+  // @include span-columns(12);
   padding: 0 10px 0 10px;
+  float:none;
   .vine-embed{
+    // @include span-columns(9);
     @include size(600px 600px);
     box-shadow: $hover-shadow 0 0 20px 20px
   }
   .video-sidebar {
-    @include span-columns(3 of 12);
-
+    // @include span-columns(3 of 12);
+    width: 340px;
+    float:right;
     border: solid 5px black;
     border-radius: 20px;
-    padding: 20px 0px 20px 0px;
+    padding: 0px 20px 0px 20px;
+    height:600px;
 
     .username {
       color: $primary-color;
