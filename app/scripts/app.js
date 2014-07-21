@@ -6,8 +6,6 @@ var HomeView = Backbone.View.extend ({
 
 		render: function () {
 				var source = $('#home-template').html();
-				// var template = Handlebars.compile(source);
-				// var rendered = template();
 				this.$el.html(source);
 				console.log('Home page rendered');
 				return this;
@@ -22,10 +20,11 @@ var homeView = new HomeView();
 
 $(function () {
 	'use strict';
+
 		$('#single').load("single.html");
 		$('#list').load("list.html");
 		$('#homepage').load("home.html", function() {
-			console.log( "Home page loaded" );
 			$('.container').html(homeView.render().$el);
+			$('h1').lettering();
 		});
 });
