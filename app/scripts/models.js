@@ -1,53 +1,15 @@
-//Build the Model
 var Vine = Backbone.Model.extend ({
-    defaults: function(){
-          return {
-              postId: '',
-              created: '',
-              videoUrl: '',
-              username: '',
-              permalinkUrl:''
-            };
-      },
-      idAttribute: "postId"
+      class: 'vine-single',
+      idAttribute: 'postId'
     });
 
-
-
-//Instantiate the Model
-var vine = new Vine();
-
-
-
-
 var VineCollection = Backbone.Collection.extend ({
-  model: Vine,
-
-
-  // url: 'http://www.mocky.io/v2/53cb43667313bbe4019ef820',
-  url: 'http://protected-harbor-8958.herokuapp.com/api/timelines/tags/cats',
-
-
-  parse: function(results) {
-            return results.data.records;
-        },
-
-// add JSONP get ability to getJSON method
-//   sync: function(method, model, options) {
-//             var that = this;
-//                 var params = _.extend({
-//                     type: 'GET',
-//                     dataType: 'jsonp',
-//                     url: that.url,
-//                     processData: false
-//                 }, options);
-//
-//             return $.ajax(params);
-//         }
-
+    model: Vine,
+    url: 'http://protected-harbor-8958.herokuapp.com/api/timelines/tags/cats',
+    parse: function(results) {
+              return results.data.records;
+          },
 });
 
-//Instantiate the Collection
-var vineCollection = new VineCollection({
 
-});
+var vineCollection = new VineCollection();

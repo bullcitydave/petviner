@@ -2,16 +2,7 @@
 var VineListView = Backbone.View.extend ({
   className : 'list',
     initialize:function(){
-       var self = this;
-       this.collection.fetch(
-        //  {dataType: "jsonp"},
-         {success: function(){
-              console.log('Collection ready to be rendered');
-          }
-       }).done(function(){
-          //  self.render();
-          console.log(this + ' fetched');
-         });
+
     },
 
     render: function () {
@@ -41,16 +32,10 @@ var VineSingleView = Backbone.View.extend({
         var source = $('#vine-single-template').html();
         var template = Handlebars.compile(source);
         console.log('Attempting to render model id' + id);
-        //   var rendered = template({vine: vineCollection.get(id).toJSON()});
-        // this.$el.html(rendered);
         var m = vineCollection.get(id);
         this.$el.html(template(m.toJSON()));
-        // .done(function(){
-          return this;
-        // });
-        }
-
-
+        return this;
+    }
 });
 
 var vineSingleView = new VineSingleView ({
