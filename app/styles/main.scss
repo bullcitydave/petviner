@@ -189,6 +189,11 @@ nav.hor-nav {
     padding: 0px 20px 0px 20px;
     height:600px;
 
+    img {
+      margin: 10px 0 0px 10px;
+      height: 200px;
+      width: 200px;
+    }
     .username {
       color: $primary-color;
       padding: 25px;

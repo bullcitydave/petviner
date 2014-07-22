@@ -5,7 +5,7 @@ var AppRouter = Backbone.Router.extend({
              'cats/:postId'    :     'getVine',
              'cats'            :     'mainList',
              'home'            :     'entry',
-             'dogs'            :     'defaultRoute'
+             'dogs'            :     'defaultRoute',
              'moksha'          :     'defaultRoute'
 
 
