@@ -25,7 +25,7 @@ var VineCollection = Backbone.Collection.extend ({
 
 
   // url: 'http://www.mocky.io/v2/53cb43667313bbe4019ef820',
-  url: 'http://0.0.0.0:3000/api/timelines/tags/cats',
+  url: 'http://protected-harbor-8958.herokuapp.com/api/timelines/tags/cats',
 
 
   parse: function(results) {

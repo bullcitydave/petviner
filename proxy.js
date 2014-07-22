@@ -61,7 +61,7 @@ app.use('/api/collections/:collId', function(req, res) {
 // Go for the Gold!
 //////////////////////////////////////////
 
-app.listen(9000);
+app.listen(3000);
 
 console.log("Hey!".red + " Welcome to ".blue + "Mega Tiny Proxy".yellow + "!".blue + "\
              \nWaiting to make your dreams come true...".green + "♡".magenta);
