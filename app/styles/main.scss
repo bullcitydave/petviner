@@ -3,16 +3,17 @@
 @import '../../bower_components/neat/app/assets/stylesheets/neat';
 
 // fonts
-@import url(http://fonts.googleapis.com/css?family=Noto+Sans:400,700);
+@import url(http://fonts.googleapis.com/css?family=Yanone+Kaffeesatz:400,700);
 @import url(http://fonts.googleapis.com/css?family=Pacifico);
 
+@import 'reset';
 
 * { @include box-sizing(border-box); }
 
 $page-width        :  960px;
 $large-avatar      :  250px;
 $primary-font      :  'Pacifico', Tahoma, sans-serif;
-$secondary-font    :  "Noto Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$secondary-font    :  'Yanone Kaffeesatz', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 
 $primary-color     :  #871F78;
 $hover-shadow      :  #CC00FF;
@@ -26,7 +27,7 @@ body {
 
 header {
     margin:auto;
-    width: $page-width;
+    width: 100%;
     font-family: $primary-font;
     font-size: 3.0em;
 }
@@ -96,10 +97,6 @@ h1 {
       color: $hover-shadow;
       letter-spacing: 0.5px;
     }
-    -webkit-margin-before: 0;
-    -webkit-margin-after: 0;
-    -webkit-margin-start: 0;
-    -webkit-margin-end: 0;
 
   }
 
@@ -114,34 +111,18 @@ h2 {
     text-align: center;
 }
 
-p {
-    -webkit-margin-before: 0;
-    -webkit-margin-after: 0;
-}
-
-a {
-    text-decoration:none;
-    color:inherit;
-}
-
-ul, menu, dir {
-    padding: 0;
-  }
-
-li
-  {
-    list-style: none;
-    -webkit-margin-before: 0em;
-    -webkit-margin-after: 0em;
-    -webkit-margin-start: 0px;
-    -webkit-margin-end: 0px;
-    -webkit-padding-start: 0px;
-  }
 
 nav.hor-nav {
   margin:10px 0 0 0;
   clear:both;
   text-align:center;
+  ul {
+    text-align: center;
+    display: inline-block;
+    li {
+      float:left;
+    }
+  }
 }
 
 .menu-button {
@@ -173,7 +154,7 @@ nav.hor-nav {
 
     .vine-embed {
       @include size(225px 225px);
-      box-shadow: $primary-color 0 0 8px 8px;
+      box-shadow: #000 0 0 8px 8px;
     }
     .result-overlay {
       opacity: .05;
@@ -212,12 +193,11 @@ nav.hor-nav {
       color: $primary-color;
       padding: 25px;
       font-size: 2.5em;
-      height: 150px;
       font-weight: bold;
     }
     .description {
       padding: 25px;
-      font-size: 2em;
+      font-size: 1.4em;
       max-height: 300px;
     }
   }

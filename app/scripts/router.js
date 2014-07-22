@@ -2,13 +2,11 @@ var AppRouter = Backbone.Router.extend({
     routes: {
 
 
-             'cats/:postId'         :     'getVine',
-
-             'cats'               :     'mainList',
-
-             'home'                     :     'entry',
-
-             'moksha'      :     'defaultRoute'
+             'cats/:postId'    :     'getVine',
+             'cats'            :     'mainList',
+             'home'            :     'entry',
+             'dogs'            :     'defaultRoute'
+             'moksha'          :     'defaultRoute'
 
 
         }
@@ -17,7 +15,6 @@ var AppRouter = Backbone.Router.extend({
     // Initiate the router
     var app_router = new AppRouter;
 
-
     app_router.on('route:getVine', function(postId) {
         console.log('Presenting vine ' + postId);
         $('.container').html(vineSingleView.render(postId).$el);
@@ -25,7 +22,18 @@ var AppRouter = Backbone.Router.extend({
 
     app_router.on('route:mainList', function() {
         console.log('Presenting video list');
-        $('.container').html(vineListView.render().$el);
+        vineCollection.fetch().done(function(){
+          console.log(this + ' fetched');
+          $('.container').html(vineListView.render().$el);
+      });
+    })
+
+    app_router.on('route:dogList', function() {
+        console.log('Presenting video list');
+        dogCollection.fetch().done(function(){
+          console.log(this + ' fetched');
+          $('.container').html(dogListView.render().$el);
+      });
     })
 
     app_router.on('route:entry', function() {

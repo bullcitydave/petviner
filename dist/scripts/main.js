@@ -9,6 +9,7 @@ var Vine = Backbone.Model.extend ({
               permalinkUrl:''
             };
       },
+      class: vine-single,
       idAttribute: "postId"
     });
 
@@ -56,16 +57,7 @@ var vineCollection = new VineCollection({
 var VineListView = Backbone.View.extend ({
   className : 'list',
     initialize:function(){
-       var self = this;
-       this.collection.fetch(
-        //  {dataType: "jsonp"},
-         {success: function(){
-              console.log('Collection ready to be rendered');
-          }
-       }).done(function(){
-          //  self.render();
-          console.log(this + ' fetched');
-         });
+
     },
 
     render: function () {
@@ -95,16 +87,10 @@ var VineSingleView = Backbone.View.extend({
         var source = $('#vine-single-template').html();
         var template = Handlebars.compile(source);
         console.log('Attempting to render model id' + id);
-        //   var rendered = template({vine: vineCollection.get(id).toJSON()});
-        // this.$el.html(rendered);
         var m = vineCollection.get(id);
         this.$el.html(template(m.toJSON()));
-        // .done(function(){
-          return this;
-        // });
-        }
-
-
+        return this;
+    }
 });
 
 var vineSingleView = new VineSingleView ({
@@ -115,13 +101,11 @@ var AppRouter = Backbone.Router.extend({
     routes: {
 
 
-             'cats/:postId'         :     'getVine',
-
-             'cats'               :     'mainList',
-
-             'home'                     :     'entry',
-
-             'moksha'      :     'defaultRoute'
+             'cats/:postId'    :     'getVine',
+             'cats'            :     'mainList',
+             'home'            :     'entry',
+             'dogs'            :     'defaultRoute'
+             'moksha'          :     'defaultRoute'
 
 
         }
@@ -130,7 +114,6 @@ var AppRouter = Backbone.Router.extend({
     // Initiate the router
     var app_router = new AppRouter;
 
-
     app_router.on('route:getVine', function(postId) {
         console.log('Presenting vine ' + postId);
         $('.container').html(vineSingleView.render(postId).$el);
@@ -138,7 +121,18 @@ var AppRouter = Backbone.Router.extend({
 
     app_router.on('route:mainList', function() {
         console.log('Presenting video list');
-        $('.container').html(vineListView.render().$el);
+        vineCollection.fetch().done(function(){
+          console.log(this + ' fetched');
+          $('.container').html(vineListView.render().$el);
+      });
+    })
+
+    app_router.on('route:dogList', function() {
+        console.log('Presenting video list');
+        dogCollection.fetch().done(function(){
+          console.log(this + ' fetched');
+          $('.container').html(dogListView.render().$el);
+      });
     })
 
     app_router.on('route:entry', function() {
