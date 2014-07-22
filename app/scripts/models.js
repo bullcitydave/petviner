@@ -9,6 +9,7 @@ var Vine = Backbone.Model.extend ({
               permalinkUrl:''
             };
       },
+      class: vine-single,
       idAttribute: "postId"
     });
 

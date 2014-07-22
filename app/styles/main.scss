@@ -26,25 +26,27 @@ body {
 
 header {
     margin:auto;
-    width:100%;
+    width: $page-width;
     font-family: $primary-font;
     font-size: 3.0em;
 }
+
 .container {
   max-width: $page-width;
   @include outer-container;
+}
 
   div.list {
-    @include span-columns (12);
-    box-shadow: $hover-shadow 0 0 20px 20px;
-    margin: 0 20px 0 20px;
-    padding: 0 0 0 35px;
+    @include span-columns(12);
+    text-align:center;
+
+    div.result {
+      width:30.9%;
+      float:left;
+      background: #000;
+    }
   }
 
-  div.result {
-    @include span-columns(4);
-    margin:0;
-  }
 
   section.vine-choices {
     @include span-columns(10);
@@ -73,11 +75,8 @@ header {
         clear:left;
     }
 
-
-
   }
 
-}
 
 
 
@@ -133,17 +132,19 @@ li
   {
     list-style: none;
     -webkit-margin-before: 0em;
--webkit-margin-after: 0em;
--webkit-margin-start: 0px;
--webkit-margin-end: 0px;
--webkit-padding-start: 0px;
+    -webkit-margin-after: 0em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 0px;
   }
 
 nav.hor-nav {
+  margin:10px 0 0 0;
+  clear:both;
   text-align:center;
 }
 
-.vine-selection-button {
+.menu-button {
     @include button(shiny, $primary-color);
     color: whitesmoke;
     margin: 12.5px 37.5px 12.5px 37.5px;
@@ -152,8 +153,13 @@ nav.hor-nav {
     font-size: 2.0em;
   }
 
-.vine-selection-button:hover {
+.menu-button:hover {
     @include button(shiny, $hover-shadow);
+    color: whitesmoke;
+    margin: 12.5px 37.5px 12.5px 37.5px;
+    width: 150px;
+    font-family: $primary-font;
+    font-size: 2.0em;
   }
 
 
@@ -215,16 +221,4 @@ nav.hor-nav {
       max-height: 300px;
     }
   }
-  .vine-single-menu-button {
-      @include button(shiny, $primary-color);
-      clear:both;
-      color: whitesmoke;
-      margin: 12.5px 37.5px 12.5px 37.5px;
-      width: 225px;
-      font-family: $primary-font;
-      font-size: 1.5m;
-  }
-  .vine-single-menu-button:hover {
-      @include button(shiny, $hover-shadow);
-    }
 }
