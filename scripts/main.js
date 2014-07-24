@@ -5,14 +5,16 @@ var Vine = Backbone.Model.extend ({
 
 var VineCollection = Backbone.Collection.extend ({
     model: Vine,
-    url: 'http://protected-harbor-8958.herokuapp.com/api/timelines/tags/cats',
+
+    initialize: function (options) {
+      this.tag = options.tag;
+      this.url = 'http://protected-harbor-8958.herokuapp.com/api/timelines/tags/' + this.tag;
+    },
+
     parse: function(results) {
               return results.data.records;
           },
 });
-
-
-var vineCollection = new VineCollection();
 
 //View for the vine collection
 var VineListView = Backbone.View.extend ({
@@ -33,10 +35,7 @@ var VineListView = Backbone.View.extend ({
 }
 });
 
-//Instantiate the Vine List view
-var vineListView = new VineListView ({
-  collection: vineCollection
-});
+
 
 var VineSingleView = Backbone.View.extend({
 
@@ -66,7 +65,7 @@ var AppRouter = Backbone.Router.extend({
              'cats'            :     'mainList',
              'home'            :     'entry',
              'dogs'            :     'defaultRoute',
-             'moksha'          :     'defaultRoute'
+             'moksha'          :     'mokshaList'
 
 
         }
@@ -81,6 +80,26 @@ var AppRouter = Backbone.Router.extend({
     })
 
     app_router.on('route:mainList', function() {
+        var vineCollection = new VineCollection({tag: 'cats'});
+
+        var vineListView = new VineListView ({
+          collection: vineCollection
+        });
+
+        console.log('Presenting video list');
+        vineCollection.fetch().done(function(){
+          console.log(this + ' fetched');
+          $('.container').html(vineListView.render().$el);
+      });
+    })
+
+    app_router.on('route:mokshaList', function() {
+        var vineCollection = new VineCollection({tag: 'mokshadog'});
+        
+        var vineListView = new VineListView ({
+          collection: vineCollection
+        });
+
         console.log('Presenting video list');
         vineCollection.fetch().done(function(){
           console.log(this + ' fetched');
