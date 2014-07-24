@@ -5,11 +5,13 @@ var Vine = Backbone.Model.extend ({
 
 var VineCollection = Backbone.Collection.extend ({
     model: Vine,
-    url: 'http://protected-harbor-8958.herokuapp.com/api/timelines/tags/cats',
+
+    initialize: function (options) {
+      this.tag = options.tag;
+      this.url = 'http://protected-harbor-8958.herokuapp.com/api/timelines/tags/' + this.tag;
+    },
+
     parse: function(results) {
               return results.data.records;
           },
 });
-
-
-var vineCollection = new VineCollection();

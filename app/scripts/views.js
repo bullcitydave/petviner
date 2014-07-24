@@ -17,10 +17,7 @@ var VineListView = Backbone.View.extend ({
 }
 });
 
-//Instantiate the Vine List view
-var vineListView = new VineListView ({
-  collection: vineCollection
-});
+
 
 var VineSingleView = Backbone.View.extend({
 

@@ -6,7 +6,7 @@ var AppRouter = Backbone.Router.extend({
              'cats'            :     'mainList',
              'home'            :     'entry',
              'dogs'            :     'defaultRoute',
-             'moksha'          :     'defaultRoute'
+             'moksha'          :     'mokshaList'
 
 
         }
@@ -21,6 +21,26 @@ var AppRouter = Backbone.Router.extend({
     })
 
     app_router.on('route:mainList', function() {
+        var vineCollection = new VineCollection({tag: 'cats'});
+
+        var vineListView = new VineListView ({
+          collection: vineCollection
+        });
+
+        console.log('Presenting video list');
+        vineCollection.fetch().done(function(){
+          console.log(this + ' fetched');
+          $('.container').html(vineListView.render().$el);
+      });
+    })
+
+    app_router.on('route:mokshaList', function() {
+        var vineCollection = new VineCollection({tag: 'mokshadog'});
+        
+        var vineListView = new VineListView ({
+          collection: vineCollection
+        });
+
         console.log('Presenting video list');
         vineCollection.fetch().done(function(){
           console.log(this + ' fetched');
