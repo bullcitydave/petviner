@@ -5,6 +5,7 @@ var HomeView = Backbone.View.extend ({
 		},
 
 		render: function () {
+
 				var source = $('#home-template').html();
 				this.$el.html(source);
 				console.log('Home page rendered');
@@ -14,17 +15,17 @@ var HomeView = Backbone.View.extend ({
 }
 });
 
-var homeView = new HomeView();
+
 
 // Launch home page
 
 $(function () {
 	'use strict';
+console.log(HomeView);
+	var homeView = new HomeView();
 
-		$('#single').load("single.html");
-		$('#list').load("list.html");
-		$('#homepage').load("home.html", function() {
-			$('.container').html(homeView.render().$el);
-			$('h1').lettering();
+		$('.container').load("home.html", function() {
+			// $('.container').html(homeView.render().$el);
+
 		});
 });
