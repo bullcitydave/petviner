@@ -22,7 +22,6 @@ var AppRouter = Backbone.Router.extend({
     var vineListView;
 
 
-
     app_router.on('route:getVine', function(postId) {
       var vineSingleView = new VineSingleView;
         console.log('Presenting vine ' + postId);
@@ -83,7 +82,9 @@ var AppRouter = Backbone.Router.extend({
 
     app_router.on('route:entry', function() {
         console.log('Going home...');
-        $('.container').html(homeView.render().$el);
+        // var homeView = new HomeView();
+        // $('.container').html(homeView.render().$el);
+        $('.container').load("home.html");
     })
 
     app_router.on('route:defaultRoute', function() {

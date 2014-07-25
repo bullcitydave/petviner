@@ -19,10 +19,11 @@ var VineCollection = Backbone.Collection.extend ({
 var VineListView = Backbone.View.extend ({
   className : 'list',
       initialize:function(){
-      this.template = Handlebars.compile($('#vine-list-template').html());
+
     },
 
     render: function () {
+        this.template = Handlebars.compile($('#vine-list-template').html());
         var rendered = this.template({vineCollection: this.collection.toJSON()});
         this.$el.html(rendered);
         console.log('Collection for',this.collection.tag, 'rendered to page')
@@ -36,10 +37,15 @@ var VineSingleView = Backbone.View.extend({
 
     initialize: function(){
         console.log('Initializing single vine view');
-        this.template = Handlebars.compile($('#vine-single-template').html());
+
+        $('#single').load("single.html");
+        $('#list').load("list.html");
+
+
       },
 
     render: function(model){
+        this.template = Handlebars.compile($('#vine-single-template').html());
         this.$el.html(this.template(model.toJSON()));
         return this;
     }
@@ -71,7 +77,6 @@ var AppRouter = Backbone.Router.extend({
     var vineCollection;
 
     var vineListView;
-
 
 
     app_router.on('route:getVine', function(postId) {
@@ -134,7 +139,9 @@ var AppRouter = Backbone.Router.extend({
 
     app_router.on('route:entry', function() {
         console.log('Going home...');
-        $('.container').html(homeView.render().$el);
+        // var homeView = new HomeView();
+        // $('.container').html(homeView.render().$el);
+        $('.container').load("home.html");
     })
 
     app_router.on('route:defaultRoute', function() {
@@ -153,6 +160,7 @@ var HomeView = Backbone.View.extend ({
 		},
 
 		render: function () {
+
 				var source = $('#home-template').html();
 				this.$el.html(source);
 				console.log('Home page rendered');
@@ -162,17 +170,17 @@ var HomeView = Backbone.View.extend ({
 }
 });
 
-var homeView = new HomeView();
+
 
 // Launch home page
 
 $(function () {
 	'use strict';
+console.log(HomeView);
+	var homeView = new HomeView();
 
-		$('#single').load("single.html");
-		$('#list').load("list.html");
-		$('#homepage').load("home.html", function() {
-			$('.container').html(homeView.render().$el);
-			$('h1').lettering();
+		$('.container').load("home.html", function() {
+			// $('.container').html(homeView.render().$el);
+
 		});
 });
