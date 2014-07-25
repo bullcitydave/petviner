@@ -4,6 +4,7 @@ var AppRouter = Backbone.Router.extend({
 
              'cats/:postId'    :     'getVine',
              'mokshadog/:postId'    :     'getVine',
+             'dogs/:postId'    :     'getVine',
              'cats'            :     'catList',
              'home'            :     'entry',
              'dogs'            :     'dogList',
@@ -56,22 +57,28 @@ var AppRouter = Backbone.Router.extend({
         console.log('Presenting video list');
         vineCollection.fetch().done(function(){
           console.log(this + ' fetched');
+          Handlebars.registerHelper("tag", function() {
+            return vineCollection.tag;
+          });
           $('.container').html(vineListView.render().$el);
       });
     })
 
     app_router.on('route:dogList', function() {
-        var vineCollection = new VineCollection({tag: 'dogs'});
+        vineCollection = new VineCollection({tag: 'dogs'});
 
-        var vineListView = new VineListView ({
-          collection: vineCollection
+          var vineListView = new VineListView ({
+            collection: vineCollection
+          });
+
+          console.log('Presenting video list');
+          vineCollection.fetch().done(function(){
+            console.log(this + ' fetched');
+            Handlebars.registerHelper("tag", function() {
+              return vineCollection.tag;
+            });
+            $('.container').html(vineListView.render().$el);
         });
-
-        console.log('Presenting video list');
-        vineCollection.fetch().done(function(){
-          console.log(this + ' fetched');
-          $('.container').html(vineListView.render().$el);
-      });
     })
 
     app_router.on('route:entry', function() {

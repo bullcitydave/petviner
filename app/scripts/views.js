@@ -1,4 +1,3 @@
-//View for the vine collection
 var VineListView = Backbone.View.extend ({
   className : 'list',
       initialize:function(){
@@ -15,9 +14,6 @@ var VineListView = Backbone.View.extend ({
 }
 });
 
-
-
-
 var VineSingleView = Backbone.View.extend({
 
     initialize: function(){
@@ -26,8 +22,6 @@ var VineSingleView = Backbone.View.extend({
       },
 
     render: function(model){
-        
-        // var m = vineCollection.get(id);
         this.$el.html(this.template(model.toJSON()));
         return this;
     }

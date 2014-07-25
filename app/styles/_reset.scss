@@ -1,3 +1,5 @@
+// My own reset, just stripping out webkit
+
 h1 {
   -webkit-margin-before: 0;
   -webkit-margin-after: 0;
@@ -24,6 +26,7 @@ li
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;
     -webkit-padding-start: 0px;
+    -webkit-padding-start: 0;
   }
 
 
