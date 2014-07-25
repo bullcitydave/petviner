@@ -25,7 +25,7 @@ console.log(HomeView);
 	var homeView = new HomeView();
 
 		$('.container').load("home.html", function() {
-			// $('.container').html(homeView.render().$el);
+			$('h1').lettering();
 
 		});
 });
