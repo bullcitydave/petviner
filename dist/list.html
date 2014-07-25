@@ -1,20 +1,19 @@
 <script type='text/x-handlebars-template' id='vine-list-template'>
 
-
-
-
     {{#each vineCollection}}
       <div class='result' id='{{postId}}'>
         <iframe class="vine-embed-small" src="{{permalinkUrl}}/embed/simple" frameborder="0"></iframe>
-        <a href="#/cats/{{postId}}"> <div class='result-overlay' id='{{postId}}'> </div></a>
+        <a href="#/{{tag}}/{{postId}}">
+          <div class='result-overlay' id='{{postId}}'> </div></a>
       </div>
     {{/each}}
 
     <nav class="hor-nav">
       <ul>
-        <li>
-          <a href="#/home"><button class="menu-button">Home</button></a>
-        </li>
+        <li><a href="#/dogs"><button class="menu-button">Dogs</button></a></li>
+        <li><a href="#/cats"><button class="menu-button">Cats</button></a></li>
+        <li><a href="#/mokshadog"><button class="menu-button">Moksha</button></a></li>
+        <li><a href="#/home"><button class="menu-button">Home</button></a></li>
       </ul>
     </nav>
 

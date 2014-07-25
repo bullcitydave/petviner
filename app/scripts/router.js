@@ -3,10 +3,12 @@ var AppRouter = Backbone.Router.extend({
 
 
              'cats/:postId'    :     'getVine',
-             'cats'            :     'mainList',
+             'mokshadog/:postId'    :     'getVine',
+             'dogs/:postId'    :     'getVine',
+             'cats'            :     'catList',
              'home'            :     'entry',
-             'dogs'            :     'defaultRoute',
-             'moksha'          :     'defaultRoute'
+             'dogs'            :     'dogList',
+             'moksha'          :     'mokshaList'
 
 
         }
@@ -15,25 +17,68 @@ var AppRouter = Backbone.Router.extend({
     // Initiate the router
     var app_router = new AppRouter;
 
+    var vineCollection;
+
+    var vineListView;
+
+
+
     app_router.on('route:getVine', function(postId) {
+      var vineSingleView = new VineSingleView;
         console.log('Presenting vine ' + postId);
-        $('.container').html(vineSingleView.render(postId).$el);
+        var m = vineCollection.get(postId);
+        $('.container').html(vineSingleView.render(m).$el);
     })
 
-    app_router.on('route:mainList', function() {
+    app_router.on('route:catList', function() {
+        vineCollection = new VineCollection({tag: 'cats'});
+
+        var vineListView = new VineListView ({
+          collection: vineCollection
+        });
+
+        console.log('Presenting video list for ',vineCollection.tag);
+        vineCollection.fetch().done(function(){
+          console.log(this + ' fetched');
+          Handlebars.registerHelper("tag", function() {
+            return vineCollection.tag;
+          });
+          $('.container').html(vineListView.render().$el);
+      });
+    })
+
+    app_router.on('route:mokshaList', function() {
+        vineCollection = new VineCollection({tag: 'mokshadog'});
+
+        var vineListView = new VineListView ({
+          collection: vineCollection
+        });
+
         console.log('Presenting video list');
         vineCollection.fetch().done(function(){
           console.log(this + ' fetched');
+          Handlebars.registerHelper("tag", function() {
+            return vineCollection.tag;
+          });
           $('.container').html(vineListView.render().$el);
       });
     })
 
     app_router.on('route:dogList', function() {
-        console.log('Presenting video list');
-        dogCollection.fetch().done(function(){
-          console.log(this + ' fetched');
-          $('.container').html(dogListView.render().$el);
-      });
+        vineCollection = new VineCollection({tag: 'dogs'});
+
+          var vineListView = new VineListView ({
+            collection: vineCollection
+          });
+
+          console.log('Presenting video list');
+          vineCollection.fetch().done(function(){
+            console.log(this + ' fetched');
+            Handlebars.registerHelper("tag", function() {
+              return vineCollection.tag;
+            });
+            $('.container').html(vineListView.render().$el);
+        });
     })
 
     app_router.on('route:entry', function() {

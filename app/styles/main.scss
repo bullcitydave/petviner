@@ -113,9 +113,8 @@ h2 {
 
 
 nav.hor-nav {
-  margin:10px 0 0 0;
-  clear:both;
-  text-align:center;
+  @include span-columns(12);
+
   ul {
     text-align: center;
     display: inline-block;
@@ -126,7 +125,7 @@ nav.hor-nav {
 }
 
 .menu-button {
-    @include button(shiny, $primary-color);
+    @include button(shiny, $hover-shadow);
     color: whitesmoke;
     margin: 12.5px 37.5px 12.5px 37.5px;
     width: 150px;
@@ -135,7 +134,7 @@ nav.hor-nav {
   }
 
 .menu-button:hover {
-    @include button(shiny, $hover-shadow);
+    @include button(shiny, $primary-color);
     color: whitesmoke;
     margin: 12.5px 37.5px 12.5px 37.5px;
     width: 150px;
@@ -173,24 +172,20 @@ nav.hor-nav {
 // SINGLE VIDEO VIEW
 // NEAT not playing nice with embed
 .video {
-  // @include span-columns(12);
   padding: 0 10px 0 10px;
   float:left;
   .vine-embed{
-    // @include span-columns(9);
+    @include span-columns(9);
     @include size(600px 600px);
-    box-shadow: $hover-shadow 0 0 8px 8px
+    box-shadow: #000 0 0 8px 8px
   }
   .video-sidebar {
-    // @include span-columns(3 of 12);
-    width: 340px;
-    float:right;
+    @include span-columns(3);
     box-shadow: #000 0 0 8px 8px;
-    padding: 0px 20px 0px 20px;
     height:600px;
+    text-align:center;
 
     img {
-      margin: 10px 0 0px 10px;
       height: 200px;
       width: 200px;
     }
