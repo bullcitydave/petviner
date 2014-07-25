@@ -19,16 +19,14 @@ var VineCollection = Backbone.Collection.extend ({
 //View for the vine collection
 var VineListView = Backbone.View.extend ({
   className : 'list',
-    initialize:function(){
-
+      initialize:function(){
+      this.template = Handlebars.compile($('#vine-list-template').html());
     },
 
     render: function () {
-        var source = $('#vine-list-template').html();
-        var template = Handlebars.compile(source);
-        var rendered = template({vineCollection: this.collection.toJSON()});
+        var rendered = this.template({vineCollection: this.collection.toJSON()});
         this.$el.html(rendered);
-        console.log('Collection rendered to page')
+        console.log('Collection for',this.collection.tag, 'rendered to page')
         return this;
 
 
@@ -37,18 +35,18 @@ var VineListView = Backbone.View.extend ({
 
 
 
+
 var VineSingleView = Backbone.View.extend({
 
     initialize: function(){
         console.log('Initializing single vine view');
+        this.template = Handlebars.compile($('#vine-single-template').html());
       },
 
-    render: function(id){
-        var source = $('#vine-single-template').html();
-        var template = Handlebars.compile(source);
-        console.log('Attempting to render model id' + id);
-        var m = vineCollection.get(id);
-        this.$el.html(template(m.toJSON()));
+    render: function(model){
+        
+        // var m = vineCollection.get(id);
+        this.$el.html(this.template(model.toJSON()));
         return this;
     }
 });
@@ -62,9 +60,10 @@ var AppRouter = Backbone.Router.extend({
 
 
              'cats/:postId'    :     'getVine',
-             'cats'            :     'mainList',
+             'mokshadog/:postId'    :     'getVine',
+             'cats'            :     'catList',
              'home'            :     'entry',
-             'dogs'            :     'defaultRoute',
+             'dogs'            :     'dogList',
              'moksha'          :     'mokshaList'
 
 
@@ -74,28 +73,39 @@ var AppRouter = Backbone.Router.extend({
     // Initiate the router
     var app_router = new AppRouter;
 
+    var vineCollection;
+
+    var vineListView;
+
+
+
     app_router.on('route:getVine', function(postId) {
+      var vineSingleView = new VineSingleView;
         console.log('Presenting vine ' + postId);
-        $('.container').html(vineSingleView.render(postId).$el);
+        var m = vineCollection.get(postId);
+        $('.container').html(vineSingleView.render(m).$el);
     })
 
-    app_router.on('route:mainList', function() {
-        var vineCollection = new VineCollection({tag: 'cats'});
+    app_router.on('route:catList', function() {
+        vineCollection = new VineCollection({tag: 'cats'});
 
         var vineListView = new VineListView ({
           collection: vineCollection
         });
 
-        console.log('Presenting video list');
+        console.log('Presenting video list for ',vineCollection.tag);
         vineCollection.fetch().done(function(){
           console.log(this + ' fetched');
+          Handlebars.registerHelper("tag", function() {
+            return vineCollection.tag;
+          });
           $('.container').html(vineListView.render().$el);
       });
     })
 
     app_router.on('route:mokshaList', function() {
-        var vineCollection = new VineCollection({tag: 'mokshadog'});
-        
+        vineCollection = new VineCollection({tag: 'mokshadog'});
+
         var vineListView = new VineListView ({
           collection: vineCollection
         });
@@ -108,10 +118,16 @@ var AppRouter = Backbone.Router.extend({
     })
 
     app_router.on('route:dogList', function() {
+        var vineCollection = new VineCollection({tag: 'dogs'});
+
+        var vineListView = new VineListView ({
+          collection: vineCollection
+        });
+
         console.log('Presenting video list');
-        dogCollection.fetch().done(function(){
+        vineCollection.fetch().done(function(){
           console.log(this + ' fetched');
-          $('.container').html(dogListView.render().$el);
+          $('.container').html(vineListView.render().$el);
       });
     })
 
